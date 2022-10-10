@@ -9,7 +9,7 @@
 Adafruit_NeoPixel pixels(PIXEL_COUNT, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
 unsigned short int delayOptions[] = {200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400};
 uint8_t delayOptionsIndex = 0;
-uint8_t colorOptions[3][3] = {{255, 0, 0},{0, 255, 0},{0, 0, 255}};
+uint8_t colorOptions[3][3] = {{255, 0, 0}, {0, 255, 0}, {0, 0, 255}};
 uint8_t colorOptionsIndex = 0;
 unsigned short int menuDelayThreshold = 1000;
 
@@ -38,7 +38,7 @@ void btnPressed() {
         if (usedTime >= menuDelayThreshold) {
             blinkLEDS(255, 255, 255, 100, 2);
             uint8_t selectedOption = 0;
-            while (digitalRead(BTN_PIN) == LOW && selectedOption < (sizeof(delayOptions)/sizeof(delayOptions[0]))) {
+            while (digitalRead(BTN_PIN) == LOW && selectedOption < (sizeof(delayOptions) / sizeof(delayOptions[0]))) {
                 blinkLEDS(255, 255, 255, 200, selectedOption);
                 selectedOption += 1;
                 delay(800);
@@ -57,7 +57,7 @@ void btnPressed() {
 void loadSettings() {
     colorOptionsIndex = EEPROM.read(100);
     delayOptionsIndex = EEPROM.read(101);
-    if (colorOptionsIndex > (sizeof(colorOptions)/sizeof(colorOptions[0]) || colorOptionsIndex >= 0) || delayOptionsIndex > (sizeof(delayOptions)/sizeof(delayOptions[0]) || delayOptionsIndex >= 0)) {
+    if (colorOptionsIndex > (sizeof(colorOptions) / sizeof(colorOptions[0]) || colorOptionsIndex >= 0) || delayOptionsIndex > (sizeof(delayOptions) / sizeof(delayOptions[0]) || delayOptionsIndex >= 0)) {
         EEPROM.write(100, 0);
         EEPROM.write(101, 0);
         colorOptionsIndex = 0;
